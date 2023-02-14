@@ -36,6 +36,6 @@ public class User {
     @Column(name = "Email", nullable = false)
     private String email;
 
-    @Column(name = "Status")
+    @Column(name = "Status", nullable = false)
     private CardType status;
 }
