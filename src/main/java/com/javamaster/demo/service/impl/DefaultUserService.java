@@ -21,13 +21,7 @@ public class DefaultUserService implements UserService {
 
     @Override
     public UserDto saveUser(@Valid UserDto userDto) {
-        User savedUser = User.builder()
-                .name(userDto.getName())
-                .surname(userDto.getSurname())
-                .patronymic(userDto.getPatronymic())
-                .email(userDto.getEmail())
-                .status(userDto.getStatus())
-                .build();
+        User savedUser = userRepository.save(userConverter.fromUserDtoToUser(userDto));
         return userConverter.fromUserToUserDto(savedUser);
     }
 

@@ -3,9 +3,11 @@ package com.javamaster.demo.converter;
 import com.javamaster.demo.dto.UserDto;
 import com.javamaster.demo.entity.User;
 import jakarta.validation.Valid;
+import org.springframework.stereotype.Component;
 
 import static java.util.Objects.isNull;
 
+@Component
 public class UserConverter {
 
     public User fromUserDtoToUser(@Valid UserDto userDto) {
