@@ -1,5 +1,6 @@
 package com.javamaster.demo.service.impl;
 
+import com.javamaster.demo.converter.PaymentCardConverter;
 import com.javamaster.demo.dto.PaymentCardDto;
 import com.javamaster.demo.entity.PaymentCard;
 import com.javamaster.demo.entity.User;
@@ -19,8 +20,10 @@ public class DefaultPaymentCardService implements PaymentCardService {
 
     private final PaymentCardRepository paymentCardRepository;
 
+    private final PaymentCardConverter paymentCardConverter;
+
     @Override
-    public void createPaymentCard(Integer userId, @Valid PaymentCardDto paymentCardDto) {
+    public PaymentCardDto createPaymentCard(Integer userId, @Valid PaymentCardDto paymentCardDto) {
         User userWithCard = userRepository.findUserById(userId);
         PaymentCard newPaymentCard = PaymentCard.builder()
                 .user(userWithCard)
@@ -28,11 +31,6 @@ public class DefaultPaymentCardService implements PaymentCardService {
                 .cardType(paymentCardDto.getCardType())
                 .currencyType(paymentCardDto.getCurrencyType())
                 .build();
-        paymentCardRepository.save(newPaymentCard);
-    }
-
-    @Override
-    public PaymentCardDto getById(Integer id) {
-        return null;
+        return paymentCardConverter.fromPaymentCardToPaymentCardDto(paymentCardRepository.save(newPaymentCard));
     }
 }
