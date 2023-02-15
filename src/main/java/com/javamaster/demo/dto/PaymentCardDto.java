@@ -1,5 +1,7 @@
 package com.javamaster.demo.dto;
 
+import com.javamaster.demo.entity.type.CardType;
+import com.javamaster.demo.entity.type.CurrencyType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,5 +18,9 @@ public class PaymentCardDto {
 
     @CreditCardNumber(message = "Wrong format")
     private Integer cardNumber;
+
+    private CardType cardType;
+
+    private CurrencyType currencyType;
 
 }

@@ -2,6 +2,7 @@ package com.javamaster.demo.service.impl;
 
 import com.javamaster.demo.dto.PaymentCardDto;
 import com.javamaster.demo.entity.PaymentCard;
+import com.javamaster.demo.entity.User;
 import com.javamaster.demo.entity.type.CardType;
 import com.javamaster.demo.repository.PaymentCardRepository;
 import com.javamaster.demo.repository.UserRepository;
@@ -20,14 +21,14 @@ public class DefaultPaymentCardService implements PaymentCardService {
 
     @Override
     public void createPaymentCard(Integer userId, @Valid PaymentCardDto paymentCardDto) {
-        PaymentCard newPaymentCard = userRepository.findById(userId)
-                .map(user -> PaymentCard.builder()
-                        .cardNumber(paymentCardDto.getCardNumber())
-                        .cardType()
-                        .currencyType()
-                        .build());
+        User userWithCard = userRepository.findUserById(userId);
+        PaymentCard newPaymentCard = PaymentCard.builder()
+                .user(userWithCard)
+                .cardNumber(paymentCardDto.getCardNumber())
+                .cardType(paymentCardDto.getCardType())
+                .currencyType(paymentCardDto.getCurrencyType())
+                .build();
         paymentCardRepository.save(newPaymentCard);
-
     }
 
     @Override

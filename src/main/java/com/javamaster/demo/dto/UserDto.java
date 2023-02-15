@@ -1,5 +1,6 @@
 package com.javamaster.demo.dto;
 
+import com.javamaster.demo.entity.type.CardType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -28,4 +29,6 @@ public class UserDto {
     private String email;
 
     private PaymentCardDto paymentCardDto;
+
+    private CardType status;
 }
