@@ -31,6 +31,8 @@ public class DefaultPaymentCardService implements PaymentCardService {
                 .cardType(paymentCardDto.getCardType())
                 .currencyType(paymentCardDto.getCurrencyType())
                 .build();
-        return paymentCardConverter.fromPaymentCardToPaymentCardDto(paymentCardRepository.save(newPaymentCard));
+        return paymentCardConverter.fromPaymentCardToPaymentCardDto(
+                paymentCardRepository.save(newPaymentCard)
+        );
     }
 }
