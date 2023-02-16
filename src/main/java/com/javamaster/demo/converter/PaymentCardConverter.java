@@ -1,9 +1,7 @@
 package com.javamaster.demo.converter;
 
 import com.javamaster.demo.dto.PaymentCardDto;
-import com.javamaster.demo.dto.UserDto;
 import com.javamaster.demo.entity.PaymentCard;
-import com.javamaster.demo.entity.User;
 import org.springframework.stereotype.Component;
 
 import static java.util.Objects.isNull;
